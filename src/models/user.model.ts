@@ -28,6 +28,10 @@ User.init(
         password: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        amount: {
+            type: DataTypes.FLOAT,
+            allowNull: true
         }
     },
     {
