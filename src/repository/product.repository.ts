@@ -1,4 +1,5 @@
 import {Product} from "../models/product.model";
+import {Category} from "../models/category.model";
 
 export class ProductRepository {
 
