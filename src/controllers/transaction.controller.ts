@@ -1,26 +1,23 @@
 import { Request, Response } from "express";
-import {TransactionService} from "../services/Transaction.service";
+import {TransactionService} from "../services/transaction.service";
 import {Transaction} from "../models/transaction.model";
 
-const TransactionsService = new TransactionService();
+const transactionsService = new TransactionService();
 
 export class TransactionController {
-    // public TransactionsService: TransactionsService;
 
-    constructor() {
-        // this.TransactionsService = new TransactionsService();
-    }
+    constructor() {}
 
     public async getAllTransactions(req: Request, res: Response) {
-        await TransactionsService.getAllTransactions()
-            .then((Transactions: Array<Transaction>) => res.json(Transactions))
+        await transactionsService.getAllTransactions()
+            .then((transactions: Array<Transaction>) => res.json(transactions))
             .catch((err: Error) => res.status(500).json({message: 'error occurred', error: err}))
     }
 
     public async createTransaction(req: Request, res: Response) {
-        await TransactionsService.createTransaction(req.body)
-            .then((Transaction: Transaction | null) => {
-                res.status(200).json({ message: 'success', data: { Transaction } })
+        await transactionsService.createTransaction(req.body)
+            .then((transaction: Transaction | null) => {
+                res.status(200).json({ message: 'success', data: { transaction } })
             })
             .catch((err: Error) => {
                 console.log('error is here');
@@ -30,9 +27,9 @@ export class TransactionController {
 
     public async updateTransaction(req: Request, res: Response) {
         const id = +req.params.id;
-        await TransactionsService.updateTransaction(req.body, id)
-            .then((Transaction: Transaction | null) => {
-                res.status(200).json({ message: 'success', data: { Transaction } })
+        await transactionsService.updateTransaction(req.body, id)
+            .then((transaction: Transaction | null) => {
+                res.status(200).json({ message: 'success', data: { transaction } })
             })
             .catch((err: Error) => {
                 console.log('error is here');
@@ -43,7 +40,7 @@ export class TransactionController {
     public async deleteTransaction(req: Request, res: Response) {
         const id = +req.params.id;
         console.log(id);
-        await TransactionsService.deleteTransaction(id)
+        await transactionsService.deleteTransaction(id)
             .then(() => {
                 res.status(200).json({ message: 'success', data: {} })
             })
@@ -57,10 +54,10 @@ export class TransactionController {
     public async getTransaction(req: Request, res: Response) {
         const id = +req.params.id;
         console.log(id);
-        await TransactionsService.getTransaction(id)
-            .then((Transaction: Transaction | null) => {
-                console.log(Transaction);
-                res.status(200).json(Transaction)
+        await transactionsService.getTransaction(id)
+            .then((transaction: Transaction | null) => {
+                console.log(transaction);
+                res.status(200).json(transaction)
             })
             .catch((err: Error) => {
                 console.log('error is here');

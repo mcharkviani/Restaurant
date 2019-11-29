@@ -9,7 +9,6 @@ class App {
     constructor() {
         this.app = express();
         this.config();
-        // this.routerPrv.routes(this.app);
         this.addRoutes();
     }
 
@@ -23,6 +22,8 @@ class App {
         this.app.use(routes.productPath, routes.productRoutes);
         this.app.use(routes.categoryPath, routes.categoryRoutes);
         this.app.use(routes.userPath, routes.userRoutes);
+        this.app.use(routes.cartPath, routes.cartRoutes);
+        this.app.use(routes.transactionPath, routes.transactionRoutes)
     }
 }
 
